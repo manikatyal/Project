@@ -1,5 +1,5 @@
 //Game Constants
-let highscore=localStorage.getItem("highscore");
+let highscore=localStorage.getItem("highscore");//Updating and storing highscore value stored in system browser
 if(highscore===null){
     hiscoreval=0;
     localStorage.setItem("highscore",JSON.stringify(hiscoreval));
@@ -20,14 +20,14 @@ let score=0;
 let lastpainttime=0;
 let snakearr=[
     {x:13,y:15}
-]
-let food={x:6 , y:7};
+];//INITAL POSN OF OUR SNAKE KA HEAD
+let food={x:6 , y:7};//INITAL POSIN OF FOOD
 // Game Funtions
 
 function main(ctime){
     window.requestAnimationFrame(main);
     
-   console.log(ctime);
+  // console.log(ctime);
    if((ctime - lastpainttime)/1000< 1/speed){
     return;
    }
@@ -60,7 +60,7 @@ function gameengine(){
         inputdir={x:0, y:0};
         alert("Game Over . Press any key to start Again");
         snakearr=[{x:13,y:15}];//Restart the game
-      //  musicsound.play();
+     
         score=0;
         scorebox.innerHTML=" Score: " +score;
        
@@ -68,15 +68,15 @@ function gameengine(){
    //If snake eaten the food,increment score and snakearr,regenrate the food
    if(snakearr[0].x===food.x && snakearr[0].y===food.y){
     foodsound.play();
-    //unshift add new elemt in ist pos of anakearr
+    //unshift add new elemt in 1st pos of snakearr
     snakearr.unshift({x: snakearr[0].x + inputdir.x , y: snakearr[0].y + inputdir.y});
   //To modify and update score and Highscore
     score+=1;
     scorebox.innerHTML=" Score: " +score;
-    if(score>=hiscoreval){
+    if(score>hiscoreval){
         hiscoreval=score;
         localStorage.setItem("highscore",JSON.stringify(hiscoreval));
-        highscorebox.innerHTML="Highscore: "+ hiscoreval;
+        highscorebox.innerHTML="Highscore: "+ hiscoreval;//updating highscore
     }
     //to gen food between row and col==2 to 16
     let a=2;
@@ -89,7 +89,7 @@ function gameengine(){
     
     snakearr[i+1]={...snakearr[i]};//this object destructuring is used to avoid refrences ka jhamela
    }
-    snakearr[0].x+=inputdir.x;
+    snakearr[0].x+=inputdir.x;//Moving head
     snakearr[0].y+=inputdir.y;
     //part 2: is Display the snake 
 
@@ -127,8 +127,10 @@ function gameengine(){
 
 
 //Main logic starts here
-//This below given function is used instead of setimeout or setinterval for making game loop
+//This below given function is used instead of setimeout or setinterval for making game loop USED FOR
+//  to perform an animation and requests that the browser call a specified function to update an animation before the next repaint(screen update).
 window.requestAnimationFrame(main);
+
 window.addEventListener('keydown',e  =>{
     inputdir={x:0, y:1};//start the game
     musicsound.play();
@@ -150,9 +152,35 @@ window.addEventListener('keydown',e  =>{
             inputdir.x= 1;
             inputdir.y= 0;
             break;
-            default: break;
+            default: break;//input dir will be x=0 and y=1 as initally if no dirn key is entered
     }
+   
 });
+let up =document.getElementById('up');
+up.addEventListener("click",function(){
+    musicsound.play();
+  inputdir.x=0;
+  inputdir.y=-1;
+});
+let down =document.getElementById('down');
+down.addEventListener("click",function(){
+    musicsound.play();
+  inputdir.x=0;
+  inputdir.y=1;
+});
+let right =document.getElementById('right');
+right.addEventListener("click",function(){
+    musicsound.play();
+  inputdir.x=1;
+  inputdir.y=0;
+});
+let left =document.getElementById('left');
+left.addEventListener("click",function(){
+    musicsound.play();
+  inputdir.x=-1;
+  inputdir.y=0;
+});
+
 
 
 

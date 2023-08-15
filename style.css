@@ -1,6 +1,6 @@
 *{
     padding: 0;
-    margin: 0;
+   margin: 0;
 }
 .body{
     background-image: url("gimg/bg.jpg");
@@ -8,7 +8,7 @@
     min-height: 100vh;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
+    justify-content: center;/*these 2 lines is to keep the board which is inside the body to be kept in center*/
     align-items: center;
 }
 #board{
@@ -40,16 +40,55 @@
    
 }
 #scorebox{
-    position: absolute;
+    position: fixed;
     top:59px;
     right:200px;
     font-size: 33px;
     font-weight: bold;
 } 
 #highscorebox{
-    position: absolute;
+    position: fixed;
     top:9px;
     right:140px;
     font-size: 33px;
     font-weight: bold;
+}
+
+#up{
+    background-image: url('gimg/keyboard_key_up.png');
+    background-size: contain;
+    background-size: cover;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top:70%;
+    right: 200px;
+}
+#down{
+   
+    background-image: url('gimg/keyboard_key_down.png');
+    background-size: contain;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top:76%;
+    right: 200px;
+}
+#right{
+    background-image: url('gimg/keyboard_key_right.png');
+    background-size: contain;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top:76%;
+    right: 152px;
+}
+#left{
+    background-image: url('gimg/keyboard_key_left.png');
+    background-size: contain;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top:76%;
+    right: 247px;
 }
